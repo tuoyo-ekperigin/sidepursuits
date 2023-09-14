@@ -9,11 +9,11 @@ incomes = [
     {'description': 'salary', 'amount': 5000 }
 ]
 
-orgs = {
-    "1" : Organization("1", "Bobs Donuts", None),
-    "2" : Organization("2", "Garcia Lawn Services", None),
-    "3" : Organization("3", "Little Lucys Happy Pets", None)
-}
+organizations = [
+    {"1" : Organization("1", "Bobs Donuts", None)},
+    {"2" : Organization("2", "Garcia Lawn Services", None)},
+    {"3" : Organization("3", "Little Lucy's Happy Pets", None)}
+]
 
 
 @app.route("/")
@@ -23,18 +23,18 @@ def intro():
 
 @app.route('/organizations')
 def get_organizations():
-    return jsonify(orgs)
+    return jsonify(organizations)
 
 
 @app.route('/organizations/<org_id>')
 def get_org_by_id(org_id):
-    org = orgs[org_id];
+    org = organizations[org_id]
     return jsonify(org)
 
 
 @app.route('/organizations', method=['POST'])
 def add_organization():
-    orgs.append(request.get_json())
+    organizations.append(request.get_json())
 
 
 @app.route('/incomes')
